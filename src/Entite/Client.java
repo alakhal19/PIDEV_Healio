@@ -10,9 +10,9 @@ package Entite;
  * @author AMINE
  */
 public class Client {
-    private String ID-cl;
-    private String Nom;
-    private String Prenom;
-    private String Email;
-    private long Telephone;
+    private String idClient;
+    private String nom;
+    private String prenom;
+    private String email;
+    private long telephone;
 }
