@@ -10,9 +10,9 @@ package tn.esprit.healio.pharmacie.entite;
  * @author AMINE
  */
 public class Medecin extends Client {
-    private String idMedecin;
+    private int idMedecin;
     private String specialite;
-    private long telephoneMedecin;
+    private String telephoneMedecin;
     private String emailMedecin;
     private String adresseCabinet;
 
@@ -20,8 +20,8 @@ public class Medecin extends Client {
         super();
     }
     
-    public Medecin(String i, String n, String p, String e, long t, String ad, String mp,
-            int ri,String im, String sp, long tm, String em,String ac) {
+    public Medecin(int i, String n, String p, String e, String t, String ad, String mp,
+            int ri,int im, String sp, String tm, String em,String ac) {
         super(i,n,p,e,t,ad,mp,ri);
         this.idMedecin=im;
         this.specialite=sp;
@@ -30,7 +30,7 @@ public class Medecin extends Client {
         this.adresseCabinet=ac;
     }
 
-    public String getIdMedecin() {
+    public int getIdMedecin() {
         return idMedecin;
     }
 
@@ -38,7 +38,7 @@ public class Medecin extends Client {
         return specialite;
     }
 
-    public long getTelephoneMedecin() {
+    public String getTelephoneMedecin() {
         return telephoneMedecin;
     }
 
@@ -50,7 +50,7 @@ public class Medecin extends Client {
         return adresseCabinet;
     }
 
-    public void setIdMedecin(String idMedecin) {
+    public void setIdMedecin(int idMedecin) {
         this.idMedecin = idMedecin;
     }
 
@@ -58,7 +58,7 @@ public class Medecin extends Client {
         this.specialite = specialite;
     }
 
-    public void setTelephoneMedecin(long telephoneMedecin) {
+    public void setTelephoneMedecin(String telephoneMedecin) {
         this.telephoneMedecin = telephoneMedecin;
     }
 

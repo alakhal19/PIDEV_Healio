@@ -11,11 +11,11 @@ package tn.esprit.healio.pharmacie.entite;
  */
 public class Client {
 
-    private String idClient;
+    private int idClient;
     private String nom;
     private String prenom;
     private String email;
-    private long telephone;
+    private String telephone;
     private String adresse;
     private String motDePasse;
     private int roleId;
@@ -24,7 +24,7 @@ public class Client {
 
     }
 
-    public Client(String i, String n, String p, String e, long t, String ad, String mp, int ri) {
+    public Client(int i, String n, String p, String e, String t, String ad, String mp, int ri) {
         this.idClient = i;
         this.nom = n;
         this.prenom = p;
@@ -35,7 +35,7 @@ public class Client {
         this.roleId = ri;
     }
 
-    public String getIdClient() {
+    public int getIdClient() {
         return idClient;
     }
 
@@ -51,7 +51,7 @@ public class Client {
         return email;
     }
 
-    public long getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
@@ -67,7 +67,7 @@ public class Client {
         return roleId;
     }
 
-    public void setIdClient(String idClient) {
+    public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
 
@@ -83,7 +83,7 @@ public class Client {
         this.email = email;
     }
 
-    public void setTelephone(long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
