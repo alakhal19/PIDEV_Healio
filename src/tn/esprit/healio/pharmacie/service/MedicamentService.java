@@ -62,6 +62,24 @@ public class MedicamentService  implements Iservice<Medicament> {
         return list;
     }
 
+    public List<Integer> readAllId()
+    {
+        String requete = "select idMedicament from medicament";
+        List<Integer> list=new ArrayList<>();
+        try {
+            ste=connexion.createStatement();
+            rs=ste.executeQuery(requete);
+            while(rs.next())
+            {
+                list.add(rs.getInt("idMedicament"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdonnanceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
     @Override
     public Medicament readById(int id) {
         String requete="SELECT * FROM `medicament` WHERE idMedicament ='"+id+"'";
@@ -80,13 +98,64 @@ public class MedicamentService  implements Iservice<Medicament> {
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String requete="DELETE FROM `medicament` WHERE idMedicament= '"+id+"'";
+        try {
+            ste=connexion.createStatement();
+            int affected;
+            affected = ste.executeUpdate(requete);
+            if (affected > 0) {
+                System.out.println("Record deleted successfully!");
+            } else {
+                System.out.println("No record found with ID: " + id);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdonnanceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(Medicament t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String requete = "UPDATE `medicament` SET `nomMedicament`='"+t.getNomMedicament()+"',`preconisation`='"+t.getPreconisation()+"',`interaction`='"+t.getInteraction()+"',`indication`='"+t.getIndication()+"',`surdosage`='"+t.getSurdosage()+"',`effet`='"+t.getEffet()+"',`toxicite`='"+t.isToxicite()+"' WHERE `idMedicament`="+t.getIdMedicament();
+        try {
+            ste=connexion.createStatement();
+            int affected;
+            affected = ste.executeUpdate(requete);
+            if (affected > 0) {
+                System.out.println("Record updated successfully!");
+            } else {
+                System.out.println("No record found with ID: " + t.getIdMedicament());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdonnanceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+    public List<Medicament> readSearch(int id) {
+    String query = "SELECT * FROM medicament WHERE idMedicament LIKE '%" + id + "%'";
+    List<Medicament> searchResults = new ArrayList<>();
+
+    try {
+        Statement statement = connexion.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        while (resultSet.next()) {
+            int medicamentId = resultSet.getInt("idMedicament");
+            String medicamentName = resultSet.getString("nomMedicament");
+            String preconisation = resultSet.getString("preconisation");            
+            String interaction = resultSet.getString("interaction");
+            String indication = resultSet.getString("indication");
+            String surdosage = resultSet.getString("surdosage");
+            String effet = resultSet.getString("effet");
+            int toxicite = resultSet.getInt("toxicite");
+
+            Medicament medicament = new Medicament(medicamentId, medicamentName, preconisation, interaction,indication,
+                    surdosage, effet, toxicite);
+            searchResults.add(medicament);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return searchResults;
+}
     
 }

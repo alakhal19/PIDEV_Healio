@@ -32,7 +32,7 @@
             <TextField fx:id="tfidph" layoutX="97.0" layoutY="284.0" prefHeight="26.0" prefWidth="224.0" />
          </children>
       </AnchorPane>
-      <Label contentDisplay="CENTER" layoutX="396.0" layoutY="26.0" prefHeight="37.0" prefWidth="289.0" text="Ajouter une ordonnance" textAlignment="CENTER" textFill="#880808" textOverrun="CLIP">
+      <Label contentDisplay="CENTER" layoutX="396.0" layoutY="26.0" prefHeight="37.0" prefWidth="289.0" text="Gestion Ordonnance" textAlignment="CENTER" textFill="#880808" textOverrun="CLIP">
          <font>
             <Font size="24.0" />
          </font>
@@ -48,5 +48,6 @@
             <TableColumn fx:id="coldate" prefWidth="123.0" text="Date de traitement" />
         </columns>
       </TableView>
+      <Button fx:id="butordmed" layoutX="865.0" layoutY="629.0" mnemonicParsing="false" onAction="#handleList" text="Liste des médicaments" textAlignment="CENTER" />
    </children>
 </AnchorPane>

@@ -6,14 +6,16 @@
 package tn.esprit.healio.pharmacie.gui;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -22,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import tn.esprit.healio.pharmacie.entite.Ordonnance;
 import tn.esprit.healio.pharmacie.service.OrdonnanceService;
 
@@ -68,6 +71,9 @@ public class AddOrdonnanceController implements Initializable {
     private TableColumn<Ordonnance, Integer> colph;
     @FXML
     private TableView<Ordonnance> tvOrd;
+    @FXML
+    private Button butordmed;
+    public Ordonnance selectedOrd;
 
     /**
      * Initializes the controller class.
@@ -95,8 +101,7 @@ public class AddOrdonnanceController implements Initializable {
         int traitee=0;
         if (rdtr.isSelected())
             traitee=1;
-        Date d = new Date(2023, 4, 22);
-        Ordonnance o=new Ordonnance(Integer.parseInt(tfidord.getText()), Integer.parseInt(tfidcl.getText()), Integer.parseInt(tfidmed.getText()), Integer.parseInt(idcons.getText()), Integer.parseInt(tfidph.getText()), traitee, d);
+        Ordonnance o=new Ordonnance(Integer.parseInt(tfidord.getText()), Integer.parseInt(tfidcl.getText()), Integer.parseInt(tfidmed.getText()), Integer.parseInt(idcons.getText()), Integer.parseInt(tfidph.getText()), traitee, dat.getValue());
         OrdonnanceService os= new OrdonnanceService();
         os.insert(o);
         showOrdonnance();
@@ -111,8 +116,7 @@ public class AddOrdonnanceController implements Initializable {
         int traitee=0;
         if (rdtr.isSelected())
             traitee=1;
-        Date d = new Date(2023, 4, 22);
-        Ordonnance o=new Ordonnance(Integer.parseInt(tfidord.getText()), Integer.parseInt(tfidcl.getText()), Integer.parseInt(tfidmed.getText()), Integer.parseInt(idcons.getText()), Integer.parseInt(tfidph.getText()), traitee, d);
+        Ordonnance o=new Ordonnance(Integer.parseInt(tfidord.getText()), Integer.parseInt(tfidcl.getText()), Integer.parseInt(tfidmed.getText()), Integer.parseInt(idcons.getText()), Integer.parseInt(tfidph.getText()), traitee, dat.getValue());
         OrdonnanceService os= new OrdonnanceService();
         os.update(o);
         showOrdonnance();
@@ -138,6 +142,7 @@ public class AddOrdonnanceController implements Initializable {
     @FXML
     private void handleItem(MouseEvent event) {
         Ordonnance Or =  tvOrd.getSelectionModel().getSelectedItem();
+        this.selectedOrd=Or;
         tfidord.setText(""+Or.getIdOrdonnance());
         tfidcl.setText(""+Or.getIdClient());
         tfidmed.setText(""+Or.getIdMedecin());
@@ -147,6 +152,29 @@ public class AddOrdonnanceController implements Initializable {
             rdtr.setSelected(true);
         else
             rdtr.setSelected(false);
+        dat.setValue(Or.getDateTraitement());
+    }
+
+    @FXML
+    private void handleList(ActionEvent event) {
+        OrdonnanceService os = new OrdonnanceService();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrdMed.fxml"));
+            Parent root = loader.load();
+            
+            OrdMedController ordmedController = loader.getController();
+            
+            ordmedController.setParameter(os.readById(Integer.parseInt(this.tfidord.getText())));
+            
+            System.out.println("done  "+os.readById(Integer.parseInt(this.tfidord.getText())));
+            
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

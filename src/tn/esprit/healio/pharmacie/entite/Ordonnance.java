@@ -5,6 +5,7 @@
  */
 package tn.esprit.healio.pharmacie.entite;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -18,12 +19,12 @@ public class Ordonnance {
     private int idConsultation;
     private int idPharmacien;
     private int traitee;
-    private Date dateTraitement;
+    private LocalDate dateTraitement;
 
     public Ordonnance() {
     }
 
-    public Ordonnance(int idOrdonnance, int idClient, int idMedecin, int idConsultation, int idPharmacien, int traitee, Date dateTraitement) {
+    public Ordonnance(int idOrdonnance, int idClient, int idMedecin, int idConsultation, int idPharmacien, int traitee, LocalDate dateTraitement) {
         this.idOrdonnance=idOrdonnance;
         this.idClient = idClient;
         this.idMedecin = idMedecin;
@@ -81,7 +82,7 @@ public class Ordonnance {
         this.traitee = traitee;
     }
 
-    public void setDateTraitement(Date dateTraitement) {
+    public void setDateTraitement(LocalDate dateTraitement) {
         this.dateTraitement = dateTraitement;
     }
 
@@ -105,7 +106,7 @@ public class Ordonnance {
         return traitee;
     }
 
-    public Date getDateTraitement() {
+    public LocalDate getDateTraitement() {
         return dateTraitement;
     }
     

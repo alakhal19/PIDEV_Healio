@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="663.0" prefWidth="1119.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.healio.pharmacie.gui.MedicamentController">
+   <children>
+      <AnchorPane prefHeight="663.0" prefWidth="1119.0">
+         <children>
+            <Label layoutX="455.0" layoutY="24.0" prefHeight="82.0" prefWidth="210.0" text="Medicament" textFill="#3c7fb1">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+            <Label layoutX="163.0" layoutY="135.0" prefHeight="31.0" prefWidth="58.0" text="ID :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="141.0" layoutY="183.0" prefHeight="31.0" prefWidth="58.0" text="Nom :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="72.0" layoutY="229.0" prefHeight="31.0" prefWidth="131.0" text="Preconisation :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="279.0" prefHeight="31.0" prefWidth="108.0" text="Interaction :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="328.0" prefHeight="31.0" prefWidth="108.0" text="Indication :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="380.0" prefHeight="31.0" prefWidth="108.0" text="Surdosage :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="137.0" layoutY="432.0" prefHeight="31.0" prefWidth="58.0" text="Effet :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfid" layoutX="195.0" layoutY="135.0" prefHeight="31.0" prefWidth="229.0" />
+            <TextField fx:id="tdnom" layoutX="194.0" layoutY="183.0" prefHeight="31.0" prefWidth="229.0" />
+            <TextField fx:id="tfinter" layoutX="195.0" layoutY="279.0" prefHeight="31.0" prefWidth="229.0" />
+            <ComboBox fx:id="cbpreco" layoutX="194.0" layoutY="229.0" prefHeight="31.0" prefWidth="229.0" />
+            <TextField fx:id="tfsurd" layoutX="194.0" layoutY="380.0" prefHeight="31.0" prefWidth="229.0" />
+            <TextField fx:id="tfeffet" layoutX="195.0" layoutY="432.0" prefHeight="31.0" prefWidth="229.0" />
+            <RadioButton fx:id="radiotox" layoutX="199.0" layoutY="490.0" mnemonicParsing="false" text="Toxicité">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <Button layoutX="131.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleAjout" text="Ajouter">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="227.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleUpdate" text="Modifier">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="330.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleDelete" text="Supprimer">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <TableView fx:id="tv" layoutX="438.0" layoutY="132.0" onMouseClicked="#handleItem" prefHeight="386.0" prefWidth="658.0">
+              <columns>
+                <TableColumn fx:id="clid" prefWidth="57.0" text="ID" />
+                <TableColumn fx:id="clnom" prefWidth="93.0" text="Nom" />
+                  <TableColumn fx:id="clpreco" prefWidth="106.0" text="Preconisation" />
+                  <TableColumn fx:id="clinter" prefWidth="84.0" text="Interaction" />
+                  <TableColumn fx:id="clindic" prefWidth="93.0" text="Indication" />
+                  <TableColumn fx:id="clsurd" minWidth="0.0" prefWidth="92.0" text="Surdosage" />
+                  <TableColumn fx:id="cleffet" prefWidth="70.0" text="Effet" />
+                  <TableColumn fx:id="cltox" prefWidth="62.0" text="Toxicité" />
+              </columns>
+            </TableView>
+            <TextField fx:id="tfrech" layoutX="909.0" layoutY="518.0" onKeyPressed="#showResearch" />
+            <Label layoutX="808.0" layoutY="518.0" prefHeight="31.0" prefWidth="93.0" text="Recherche :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="tfindic" layoutX="195.0" layoutY="329.0" prefHeight="31.0" prefWidth="229.0" />
+   </children>
+</AnchorPane>

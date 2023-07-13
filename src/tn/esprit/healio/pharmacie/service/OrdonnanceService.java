@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tn.esprit.healio.pharmacie.utilis.DataSource;
 import java.sql.Date;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 /**
@@ -39,8 +40,7 @@ public class OrdonnanceService implements Iservice<Ordonnance> {
     }
     @Override
     public void insert(Ordonnance t) {
-        java.sql.Timestamp dat = new java.sql.Timestamp(t.getDateTraitement().getTime());
-         String requete = "INSERT INTO `ordonnance`(`idOrdonnance`, `idClient`, `idMedecin`, `idConsultation`, `idPharm`, `traite`, `dateTraitement`) VALUES ('" + t.getIdOrdonnance()+ "','"+ t.getIdClient()+ "','" +t.getIdMedecin() + "','" + t.getIdConsultation()+ "','" +t.getIdPharmacien()+"','"+t.isTraitee()+"','"+dat+"')";
+         String requete = "INSERT INTO `ordonnance`(`idOrdonnance`, `idClient`, `idMedecin`, `idConsultation`, `idPharm`, `traite`, `dateTraitement`) VALUES ('" + t.getIdOrdonnance()+ "','"+ t.getIdClient()+ "','" +t.getIdMedecin() + "','" + t.getIdConsultation()+ "','" +t.getIdPharmacien()+"','"+t.isTraitee()+"','"+java.sql.Date.valueOf(t.getDateTraitement())+"')";
 
         try {
             ste = connexion.createStatement();
@@ -56,11 +56,14 @@ public class OrdonnanceService implements Iservice<Ordonnance> {
         String requete="select * from ordonnance";
         ObservableList<Ordonnance> list=FXCollections.observableArrayList();
         try {
+            LocalDate date=null;
             ste=connexion.createStatement();
             rs=ste.executeQuery(requete);
             while(rs.next()){
                 Ordonnance p;
-                p = new Ordonnance(rs.getInt("idOrdonnance"),rs.getInt("idClient"), rs.getInt("idMedecin"), rs.getInt("idConsultation"), rs.getInt("idPharm"),rs.getInt("traite"),rs.getDate("dateTraitement"));
+                java.sql.Date sqldate = rs.getDate("dateTraitement");
+                date = sqldate.toLocalDate();
+                p = new Ordonnance(rs.getInt("idOrdonnance"),rs.getInt("idClient"), rs.getInt("idMedecin"), rs.getInt("idConsultation"), rs.getInt("idPharm"),rs.getInt("traite"),date);
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -71,13 +74,16 @@ public class OrdonnanceService implements Iservice<Ordonnance> {
 
     @Override
     public Ordonnance readById(int id) {
+        LocalDate date = null;
         String requete="SELECT * FROM `ordonnance` WHERE idOrdonnance ='"+id+"'";
         Ordonnance p = null;
         try {
             Statement ste=connexion.createStatement();
             ResultSet rs=ste.executeQuery(requete);
             if (rs.next()) {
-                 p = new Ordonnance(rs.getInt("idOrdonnance"),rs.getInt("idClient"), rs.getInt("idMedecin"), rs.getInt("idConsultation"), rs.getInt("idPharm"),rs.getInt("traite"),rs.getDate("dateTraitement"));
+                java.sql.Date sqldate = rs.getDate("dateTraitement");
+                date = sqldate.toLocalDate();
+                 p = new Ordonnance(rs.getInt("idOrdonnance"),rs.getInt("idClient"), rs.getInt("idMedecin"), rs.getInt("idConsultation"), rs.getInt("idPharm"),rs.getInt("traite"),date);
             } else
                 System.out.println("No record found with ID: " + id);
         } catch (SQLException ex) {
@@ -109,8 +115,7 @@ public class OrdonnanceService implements Iservice<Ordonnance> {
 
     @Override
     public void update(Ordonnance t) {
-        java.sql.Timestamp dat = new java.sql.Timestamp(t.getDateTraitement().getTime());
-        String requete ="UPDATE `ordonnance` SET `idClient`='"+t.getIdClient()+"',`idMedecin`='"+t.getIdMedecin()+"',`idConsultation`='"+t.getIdConsultation()+"',`idPharm`='"+t.getIdPharmacien()+"',`traite`='"+t.isTraitee()+"',`dateTraitement`='"+dat+"' WHERE `idOrdonnance`='"+t.getIdOrdonnance()+"'";
+        String requete ="UPDATE `ordonnance` SET `idClient`='"+t.getIdClient()+"',`idMedecin`='"+t.getIdMedecin()+"',`idConsultation`='"+t.getIdConsultation()+"',`idPharm`='"+t.getIdPharmacien()+"',`traite`='"+t.isTraitee()+"',`dateTraitement`='"+java.sql.Date.valueOf(t.getDateTraitement())+"' WHERE `idOrdonnance`='"+t.getIdOrdonnance()+"'";
         try {
             ste=connexion.createStatement();
             int affected;

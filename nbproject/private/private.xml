@@ -8,7 +8,12 @@
             <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/pidev/PIDEV.java</file>
             <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/service/OrdonnanceService.java</file>
             <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/entite/Medicament.java</file>
+            <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/gui/AddOrdonnance.fxml</file>
+            <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/entite/OrdMed.java</file>
+            <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/gui/OrdMed.fxml</file>
             <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/gui/AddClientController.java</file>
+            <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/gui/OrdMedController.java</file>
+            <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/service/MedicamentService.java</file>
             <file>file:/C:/Users/AMINE/Documents/NetBeansProjects/PIDEV/src/tn/esprit/healio/pharmacie/entite/Ordonnance.java</file>
         </group>
     </open-files>
